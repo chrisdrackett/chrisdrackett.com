@@ -51,7 +51,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.webdesign',
     'tagging',
-    'platypus.apps.delicious'
+    'platypus.apps.links'
 )
 
 EMPTY_ITEM = '---'
@@ -59,6 +59,11 @@ EMPTY_ITEM = '---'
 DELICIOUS_USERNAME = 'username'
 DELICIOUS_PASSWORD = 'password'
 
+LASTFM_KEY = 'key'
+LASTFM_SECRET = 'secret'
+LASTFM_USERNAME = 'username'
+LASTFM_PASSWORD = 'password'
+LASTFM_SESSION = ''
 
 try:
     from local_settings import *

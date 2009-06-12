@@ -10,7 +10,5 @@ class Link(Base):
     title = models.CharField(max_length=200)
     body = models.TextField()
     
-    app = u"links"
-    
     def __unicode__(self):
         return self.title

@@ -5,7 +5,7 @@ from time import strptime
 from django.conf import settings
 from django.utils import simplejson
 
-from platypus.apps.delicious.models import Link
+from platypus.apps.links.models import Link
 
 def sync_links():
     links = simplejson.loads(urllib.urlopen("http://feeds.delicious.com/v2/json/%s" % settings.DELICIOUS_USERNAME).read())

@@ -7,7 +7,7 @@ from django.conf import settings
 from django.utils import simplejson
 from django.db.models import signals
 
-from platypus.apps.delicious import models as delicious_app
+from platypus.apps.links import models as links_app
 
 def initial_import(sender=None, **kwargs):
     ''' this function will grab ALL your delicious bookmarks. This should only be run once, past that, use the normal sync function.'''
@@ -21,7 +21,7 @@ def initial_import(sender=None, **kwargs):
         root = tree.getroot()
         
         for item in root.getchildren():
-            link, created = delicious_app.Link.objects.get_or_create(url=item.attrib.get('href'), defaults={
+            link, created = links_app.Link.objects.get_or_create(url=item.attrib.get('href'), defaults={
                 'title': item.attrib.get('description'),
                 'body': item.attrib.get('extended'),
                 'tags': item.attrib.get('tag'),
@@ -32,4 +32,4 @@ def initial_import(sender=None, **kwargs):
     except:
         print "error with initial delicious import. Did you put your username and password in settings?"
 
-signals.post_syncdb.connect(initial_import, sender=delicious_app)
+signals.post_syncdb.connect(initial_import, sender=links_app)
