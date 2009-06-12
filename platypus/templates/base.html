@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html>
+	<head>
+		<title>platypus | {% block title %}{{ title }}{% endblock %}</title>
+		<link href="{{ MEDIA_URL }}/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+		<link href="{{ MEDIA_URL }}/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+		<!--[if IE]>
+			<link href="{{ MEDIA_URL }}/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+		<![endif]-->
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="header">
+				<h1>{{ title }}</h1>
+				<ul id="links">
+					<li><a href="{% url home %}">Home</a></li>
+					{% block logout %}
+						<li><a href="{% url logout %}">Logout</a></li>
+					{% endblock %}
+				</ul>
+			</div>
+			<div id="content">
+				{% block navigation %}
+					nav
+				{% endblock %}
+				<div id="body">
+					{% block content %}
+						content
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
