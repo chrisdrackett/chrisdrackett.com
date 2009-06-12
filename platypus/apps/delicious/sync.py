@@ -1,12 +1,14 @@
+import string, urllib
 from datetime import datetime
 from time import strptime
-import string
 
 from django.conf import settings
 from django.utils import simplejson
 
+from platypus.apps.delicious.models import Link
+
 def sync_links():
-    links = json.loads(urllib.urlopen("http://feeds.delicious.com/v2/rss/%s" % settings.DELICIOUS_USERNAME).read())
+    links = simplejson.loads(urllib.urlopen("http://feeds.delicious.com/v2/json/%s" % settings.DELICIOUS_USERNAME).read())
     
     for item in links:
         link, created = Link.objects.get_or_create(url=item['u'], defaults={
