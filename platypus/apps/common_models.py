@@ -2,8 +2,11 @@ import logging
 from datetime import datetime
 
 from django.db import models
+from django.db.models import permalink
 
-from platypus.apps.updates.models import Update
+from tagging.fields import TagField
+
+# from platypus.apps.updates.models import Update
 
 class Base(models.Model):
     class Meta:
@@ -14,7 +17,7 @@ class Base(models.Model):
     tags = TagField()
     published = models.BooleanField(default=True)
     allow_comments = models.BooleanField(default=True)
-    updates = models.ManyToManyField(Update, related_name='link_update')
+#    updates = models.ManyToManyField(Update, related_name='link_update')
     date_added = models.DateTimeField(editable=False, blank=True)
     date_updated = models.DateTimeField(editable=False, blank=True)
 

@@ -3,8 +3,6 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-MANAGERS = ADMINS
-
 DATABASE_ENGINE = 'mysql'
 DATABASE_NAME = 'platypus'
 DATABASE_USER = 'root'
@@ -52,10 +50,15 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.webdesign',
+    'tagging',
     'platypus.apps.delicious'
 )
 
 EMPTY_ITEM = '---'
+
+DELICIOUS_USERNAME = 'username'
+DELICIOUS_PASSWORD = 'password'
+
 
 try:
     from local_settings import *
