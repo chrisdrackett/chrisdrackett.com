@@ -1,37 +1,24 @@
-from pylast import pylast
+from platypus.apps.music.functions import get_user
+from platypus.apps.music.models import WeeklyUpdate, Track, Artist
 
 def sync_tracks(*args, **kwargs):
-    try:
-        tree = ET.parse(urllib.urlopen("http://ws.audioscrobbler.com/1.0/user/drackett/weeklytrackchart.xml"))
-        x = tree.getroot()
-        
-        if not WeeklyUpdate.objects.filter(ident=x.attrib.get('from')):
-            global_id = x.attrib.get('from')
-            for track in x:
-                try:
-                    test = Artist.objects.get(mbid=track.find('artist').attrib.get('mbid'))
-                except Artist.DoesNotExist:
-                    a = Artist(
-                        name = track.find('artist').text,
-                        mbid = track.find('artist').attrib.get('mbid'),
-                    )
-                    a.save()
-                try:
-                    test = Track.objects.get(url=track.find('url').text)
-                except Track.DoesNotExist:
-                    t = Track(
-                        name = track.find('name').text,
-                        artist = Artist.objects.get(mbid=track.find('artist').attrib.get('mbid')),
-                        url = track.find('url').text,
-                    )
-                    t.save()
-                u = WeeklyUpdate(
-                        track = Track.objects.get(url=track.find('url').text),
-                        position = track.find('chartposition').text,
-                        playcount = track.find('playcount').text,
-                        ident = global_id,
+    user = get_user()
+    for from_date, to_date in user.get_weekly_chart_dates():
+        if not WeeklyUpdate.objects.filter(ident=from_date):
+            tracks = user.get_weekly_track_charts(from_date, to_date)
+            
+            for track in tracks:
+                WeeklyUpdate.objects.create(
+                    track=Track.objects.get_or_create(id=track.get_item().get_id(), defaults={
+                        'url': track.get_item().get_url(),
+                        'name': track.get_item().get_title(),
+                        'artist': Artist.objects.get_or_create(mbid=track.get_item().get_artist().get_mbid(), defaults={
+                            'name': track.get_item().get_artist().get_name(),
+                            'url': track.get_item().get_artist().get_url(),
+                            'image': track.get_item().get_artist().get_image_url()
+                        })[0]
+                    })[0],
+                    playcount=track.get_weight(),
+                    position=track.get_position(),
+                    ident=from_date
                 )
-                u.save()
-        return True
-    except:
-        return False

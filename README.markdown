@@ -1,3 +1,8 @@
+Issues:
+=======
+
+Issues live here: http://chrisdrackett.lighthouseapp.com/projects/4133-platypus/overview
+
 Requirements:
 =============
 

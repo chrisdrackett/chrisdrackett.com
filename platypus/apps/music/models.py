@@ -9,6 +9,8 @@ class Artist(Base):
     
     name = models.CharField(max_length=150)
     mbid = models.CharField(max_length=36,)
+    url = models.URLField()
+    image = models.URLField()
     
     def __unicode__(self):
         return self.name
@@ -16,7 +18,7 @@ class Artist(Base):
 class Track(Base):
     class Meta:
         verbose_name_plural = 'Tracks'
-    
+
     name = models.CharField(max_length=150)
     artist = models.ForeignKey(Artist)
     url = models.URLField()
