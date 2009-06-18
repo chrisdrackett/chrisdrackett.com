@@ -10,7 +10,7 @@ DATABASE_PASSWORD = ''
 DATABASE_HOST = ''
 DATABASE_PORT = ''
 
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'UTC' # as most of our data is coming from feeds that use UTC, platypus uses UTC as well.
 LANGUAGE_CODE = 'en-us'
 SITE_ID = 1
 USE_I18N = False

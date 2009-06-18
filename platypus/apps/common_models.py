@@ -1,12 +1,11 @@
 import logging
 from datetime import datetime
+from tagging.fields import TagField
 
 from django.db import models
 from django.db.models import permalink
 
-from tagging.fields import TagField
-
-# from platypus.apps.updates.models import Update
+from platypus.apps.events.models import Event
 
 class Base(models.Model):
     class Meta:
@@ -20,6 +19,9 @@ class Base(models.Model):
 #    updates = models.ManyToManyField(Update, related_name='%s_update' % self._meta.module_name)
     date_added = models.DateTimeField(editable=False, blank=True)
     date_updated = models.DateTimeField(editable=False, blank=True)
+
+    # this is just what group this item was added in
+    event = models.ForeignKey(Event, db_index=True, null=True)
 
     @permalink
     def get_url(self):
