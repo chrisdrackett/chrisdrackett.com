@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from platypus.apps.music.functions import get_user
 from platypus.apps.music.models import WeeklyUpdate, Track, Artist
 
@@ -20,5 +22,6 @@ def sync_tracks(*args, **kwargs):
                     })[0],
                     playcount=track.get_weight(),
                     position=track.get_position(),
-                    ident=from_date
+                    ident=from_date,
+                    date_added=datetime.fromtimestamp(int(from_date))
                 )
