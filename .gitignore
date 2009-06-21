@@ -1,0 +1,16 @@
+bookends/local-files
+local-files
+.coverage
+Makefile.def
+*pyc
+local_settings.py
+
+# Emacs backups
+*~
+\#*#
+.#*
+shelfworthy/log/*
+# Clear script for db
+shelfworthy/clear.sql
+lib/*
+lib1/*
