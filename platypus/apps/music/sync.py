@@ -1,27 +1,71 @@
+import lastfm
 from datetime import datetime
 
-from platypus.apps.music.functions import get_user
-from platypus.apps.music.models import WeeklyUpdate, Track, Artist
+from django.conf import settings
 
-def sync_tracks(*args, **kwargs):
-    user = get_user()
-    for from_date, to_date in user.get_weekly_chart_dates():
-        if not WeeklyUpdate.objects.filter(ident=from_date):
-            tracks = user.get_weekly_track_charts(from_date, to_date)
-            
-            for track in tracks:
-                WeeklyUpdate.objects.create(
-                    track=Track.objects.get_or_create(id=track.get_item().get_id(), defaults={
-                        'url': track.get_item().get_url(),
-                        'name': track.get_item().get_title(),
-                        'artist': Artist.objects.get_or_create(mbid=track.get_item().get_artist().get_mbid(), defaults={
-                            'name': track.get_item().get_artist().get_name(),
-                            'url': track.get_item().get_artist().get_url(),
-                            'image': track.get_item().get_artist().get_image_url()
-                        })[0]
-                    })[0],
-                    playcount=track.get_weight(),
-                    position=track.get_position(),
-                    ident=from_date,
-                    date_added=datetime.fromtimestamp(int(from_date))
+from platypus import signals
+from platypus.apps.music.models import TrackUpdate, Track, Artist
+
+def lastfm_sync(*args, **kwargs):
+    api = lastfm.Api(settings.LASTFM_KEY)
+    user = api.getUser(settings.LASTFM_USERNAME)
+    
+    track_number = 0
+    artist_number = 0
+    
+    for chart in user.weeklyTrackChartList:
+        if not TrackUpdate.objects.filter(start_date=chart.start):
+            print "getting tracks for chart from %s" % chart.start
+            for track in chart.tracks:
+                try:
+                    track._fillInfo()
+                except:
+                    pass
+                try:
+                    image = track.artist.image['large']
+                except:
+                    image = None
+                
+                artist, a_created = Artist.objects.get_or_create(name=track.artist.name, defaults={
+                    'mbid': track.artist.mbid,
+                    'url': track.artist.url,
+                    'image': image
+                })
+                print "adding artist %s" % artist.name
+                
+                if a_created:
+                    print "The above is new..."
+                    artist_number += 1
+                
+                new_track, t_created = Track.objects.get_or_create(id=track.id, defaults={
+                    'url': track.url,
+                    'name': track.name,
+                    'artist': artist
+                })
+                print "adding track %s" % new_track.name
+                
+                if t_created:
+                    print "The above is new..."
+                    track_number += 1
+                
+                TrackUpdate.objects.create(
+                    track=new_track,
+                    playcount=track.stats.playcount,
+                    position=track.stats.rank or 1,
+                    start_date=chart.start,
+                    date_added=chart.start
                 )
+                print "adding track update."
+    if artist_number > 0:
+        signals.sync_complete.send(
+            sender=self,
+            source="lastfm_artist",
+            number=artist_number
+        )
+    if track_number > 0:
+        signals.sync_complete.send(
+            sender=self,
+            source="lastfm_track",
+            number=track_number
+        )
+

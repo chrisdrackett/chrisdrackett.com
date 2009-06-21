@@ -21,15 +21,15 @@ def initial_import(sender=None, **kwargs):
         root = tree.getroot()
         
         for item in root.getchildren():
+            print "adding a link..."
             link, created = links_app.Link.objects.get_or_create(url=item.attrib.get('href'), defaults={
                 'title': item.attrib.get('description'),
                 'body': item.attrib.get('extended'),
                 'tags': item.attrib.get('tag'),
                 'date_added': datetime(*strptime(item.attrib.get('time'), '%Y-%m-%dT%H:%M:%SZ')[:6]),
             })
+            print "link '%s' added" % link.title
     except urllib2.HTTPError:
         print "something went wrong contacting delicious. Try again later."
-    except:
-        print "error with initial delicious import. Did you put your username and password in settings?"
 
 signals.post_syncdb.connect(initial_import, sender=links_app)

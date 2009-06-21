@@ -8,9 +8,9 @@ class Artist(Base):
         verbose_name_plural = 'Artists'
     
     name = models.CharField(max_length=150)
-    mbid = models.CharField(max_length=36,)
+    mbid = models.CharField(max_length=36)
     url = models.URLField()
-    image = models.URLField()
+    image = models.URLField(null=True)
     
     def __unicode__(self):
         return self.name
@@ -47,11 +47,11 @@ class Track(Base):
             histroy.append(state)
         return history
 
-class WeeklyUpdate(Base):
+class TrackUpdate(Base):
     class Meta:
         verbose_name_plural = 'Weekly Updates'
 
     track = models.ForeignKey(Track)
     position = models.IntegerField()
-    playcount = models.IntegerField(blank=True, null=True)
-    ident = models.IntegerField()
+    playcount = models.IntegerField()
+    start_date = models.DateTimeField()

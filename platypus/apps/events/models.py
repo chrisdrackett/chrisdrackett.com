@@ -23,7 +23,8 @@ class Event(models.Model):
         super(Event, self).save(*args, **kwargs)
 
 def add_event(sender, source, number, **kwargs):
-    all_done = False # if the latest event is from the same source, we'll change this to true and just update the latest event.
+    all_done = False # if the latest event is from the same source, we'll
+                     # change this to true and just update the latest event.
     try:
         event = Event.objects.latest()
         if event.source == source:
