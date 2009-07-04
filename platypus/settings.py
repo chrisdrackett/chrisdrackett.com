@@ -66,6 +66,8 @@ LASTFM_USERNAME = 'username'
 LASTFM_PASSWORD = 'password'
 LASTFM_SESSION = ''
 
+NIKE_PLUS_ID = 'runner_id'
+
 try:
     from local_settings import *
 except ImportError:

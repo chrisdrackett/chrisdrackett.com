@@ -37,3 +37,17 @@ LASTFM_KEY = 'key'
 LASTFM_USERNAME = 'username'
 
 If you need to do this again in the future, just run 'initial_import' from platypus/apps/music/management.py.
+
+Nike+
+-----
+
+To use Nike+ you need to turn on sharing on the nike+ website. You then need to add your runner id to settings.
+
+NIKE_PLUS_ID = 'runner_id'
+
+This can be found in the sharing URL that nike gives you, for example my url is:
+
+http://nikerunning.nike.com/nikeplus/?l=runners,runs,77576987,runID,1544907350
+
+in this URL my id is 77576987.
+
