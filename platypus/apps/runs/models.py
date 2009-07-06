@@ -29,12 +29,12 @@ class Run(Base):
     class Meta:
         verbose_name_plural = 'Runs'
     
-    distance = models.DecimalField()
+    distance = models.DecimalField(max_digits=10, decimal_places=2)
     duration = models.PositiveIntegerField()
-    calories = models.DecimalField()
-    how_felt = models.CharField(blank=True, max_length=1, choices=FELT)
-    weather = models.CharField(blank=True, max_length=1, choices=WEATHER)
-    terrain = models.CharField(blank=True, max_length=1, choices=TERRAIN)
+    calories = models.DecimalField(max_digits=5, decimal_places=2)
+    how_felt = models.CharField(blank=True, null=True, max_length=1, choices=FELT)
+    weather = models.CharField(blank=True, null=True, max_length=1, choices=WEATHER)
+    terrain = models.CharField(blank=True, null=True, max_length=1, choices=TERRAIN)
     
     def __unicode__(self):
         return str(self.runid)

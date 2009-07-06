@@ -51,8 +51,10 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.webdesign',
     'tagging',
+    'platypus.apps.events',
     'platypus.apps.links',
-    'platypus.apps.music'
+    'platypus.apps.music',
+    'platypus.apps.runs'
 )
 
 EMPTY_ITEM = '---'

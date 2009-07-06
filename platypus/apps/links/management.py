@@ -5,9 +5,10 @@ from time import strptime
 
 from django.conf import settings
 from django.utils import simplejson
-from django.db.models import signals
+from django.db.models import signals as d_signals
 
 from platypus.apps.links import models as links_app
+from platypus import signals
 
 def initial_import(sender=None, **kwargs):
     ''' this function will grab ALL your delicious bookmarks. This should only be run once, past that, use the normal sync function.'''
@@ -28,8 +29,15 @@ def initial_import(sender=None, **kwargs):
                 'tags': item.attrib.get('tag'),
                 'date_added': datetime(*strptime(item.attrib.get('time'), '%Y-%m-%dT%H:%M:%SZ')[:6]),
             })
+            
+            signals.sync_complete.send(
+                sender=links_app,
+                source='delicious',
+                number=1
+            )
+            
             print "link '%s' added" % link.title
     except urllib2.HTTPError:
         print "something went wrong contacting delicious. Try again later."
 
-signals.post_syncdb.connect(initial_import, sender=links_app)
+d_signals.post_syncdb.connect(initial_import, sender=links_app)

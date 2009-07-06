@@ -10,6 +10,7 @@ Requirements:
 * django tagging
 * Element Tree
 * [python lastfm (r77)](http://code.google.com/p/python-lastfm/)
+* [iso8601](http://pypi.python.org/pypi/iso8601/)
 
 Instructions:
 =============
@@ -50,4 +51,5 @@ This can be found in the sharing URL that nike gives you, for example my url is:
 http://nikerunning.nike.com/nikeplus/?l=runners,runs,77576987,runID,1544907350
 
 in this URL my id is 77576987.
+
 

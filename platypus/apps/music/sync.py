@@ -18,10 +18,6 @@ def lastfm_sync(*args, **kwargs):
             print "getting tracks for chart from %s" % chart.start
             for track in chart.tracks:
                 try:
-                    track._fillInfo()
-                except:
-                    pass
-                try:
                     image = track.artist.image['large']
                 except:
                     image = None
@@ -37,8 +33,7 @@ def lastfm_sync(*args, **kwargs):
                     print "The above is new..."
                     artist_number += 1
                 
-                new_track, t_created = Track.objects.get_or_create(id=track.id, defaults={
-                    'url': track.url,
+                new_track, t_created = Track.objects.get_or_create(url=track.url, defaults={
                     'name': track.name,
                     'artist': artist
                 })
@@ -51,7 +46,7 @@ def lastfm_sync(*args, **kwargs):
                 TrackUpdate.objects.create(
                     track=new_track,
                     playcount=track.stats.playcount,
-                    position=track.stats.rank or 1,
+                    position=track.stats.rank,
                     start_date=chart.start,
                     date_added=chart.start
                 )
