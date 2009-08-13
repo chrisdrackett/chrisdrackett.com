@@ -9,7 +9,7 @@ PROJECT_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 # Add "support" directory to Python path
 sys.path.insert(0, os.path.join(PROJECT_PATH, 'support'))
 
-LOCALHOST = DEBUG = False
+DEBUG = SERVE_MEDIA = False
 
 DATABASE_ENGINE = 'mysql'
 DATABASE_NAME = 'platypus'

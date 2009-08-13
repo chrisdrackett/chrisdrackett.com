@@ -1,4 +1,4 @@
-LOCALHOST = DEBUG = True
+DEBUG = SERVE_MEDIA = True
 
 ADMINS = (
     ('Name', 'email@domain.com'),
