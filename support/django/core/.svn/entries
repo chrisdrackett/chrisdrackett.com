@@ -1,0 +1,163 @@
+8
+
+dir
+11447
+http://code.djangoproject.com/svn/django/trunk/django/core
+http://code.djangoproject.com/svn
+
+
+
+2009-07-29T02:40:14.417519Z
+11351
+russellm
+has-props
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+bcc190cf-cafb-0310-a4f2-bffc1f526a37
+
+__init__.py
+file
+
+
+
+
+2009-06-12T14:01:50.000000Z
+d41d8cd98f00b204e9800998ecf8427e
+2005-07-13T01:25:57.167725Z
+3
+adrian
+has-props
+
+signals.py
+file
+
+
+
+
+2009-06-12T14:01:50.000000Z
+22d3db2d2416c7dc4f33db394b3b687e
+2008-08-06T15:32:46.158057Z
+8223
+jacob
+has-props
+
+template_loader.py
+file
+
+
+
+
+2009-06-12T14:01:50.000000Z
+47ac5619e13abd629c7eea0a240a78e7
+2006-05-02T01:31:56.774695Z
+2809
+adrian
+has-props
+
+servers
+dir
+
+xheaders.py
+file
+
+
+
+
+2009-06-12T14:01:50.000000Z
+2d127a9e76780b429a27ef1ba87ae082
+2007-08-12T10:29:59.819714Z
+5870
+mtredinnick
+has-props
+
+serializers
+dir
+
+context_processors.py
+file
+
+
+
+
+2009-06-12T14:01:50.000000Z
+db24404e5e2f1cef676e0d1e9faced40
+2008-08-09T15:38:44.195799Z
+8263
+jacob
+has-props
+
+urlresolvers.py
+file
+
+
+
+
+2009-08-13T17:19:48.000000Z
+dad70b26386ea2c54d7bcfdfadc7e42e
+2009-07-16T16:16:13.303471Z
+11250
+russellm
+has-props
+
+handlers
+dir
+
+files
+dir
+
+cache
+dir
+
+exceptions.py
+file
+
+
+
+
+2009-06-12T14:01:50.000000Z
+9d80f68dcbc273b5db080b7fb0c64eee
+2008-08-27T07:19:44.848769Z
+8616
+gwilson
+has-props
+
+mail.py
+file
+
+
+
+
+2009-06-12T14:01:50.000000Z
+b158ea5e5a93bb2f2e9369b4c53ebdf4
+2009-06-12T13:56:40.222814Z
+10983
+lukeplant
+has-props
+
+paginator.py
+file
+
+
+
+
+2009-06-12T14:01:50.000000Z
+a3ad0f75ca00abb203d445445ce53e72
+2008-08-02T04:56:11.368128Z
+8191
+gwilson
+has-props
+
+management
+dir
+

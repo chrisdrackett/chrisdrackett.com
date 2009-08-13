@@ -3,12 +3,19 @@ Issues:
 
 Issues live here: http://chrisdrackett.lighthouseapp.com/projects/4133-platypus/overview
 
-Requirements:
+Requirements (Install yourself):
 =============
 
-* django trunk
-* django tagging
-* Element Tree
+* Python 2.5
+* PIL (python imaging)
+
+Requirements (Included in Project):
+====================
+
+I've included all the python requirements (other than PIL) as part of the project to keep development / deploying things easer. You can ignore the folder and install this stuff yourself if you so wish.
+
+* [django trunk](http://www.djangoproject.com/download/)
+* [django tagging](http://code.google.com/p/django-tagging/)
 * [python lastfm (r77)](http://code.google.com/p/python-lastfm/)
 * [iso8601](http://pypi.python.org/pypi/iso8601/)
 
