@@ -1,0 +1,139 @@
+/* @override http://127.0.0.1:8000/static/css/main.css */
+
+/* @group CSS Reset */
+/* -------------------------------------------------------------- 
+  
+   reset.css
+   * Resets default browser CSS.
+   
+   Based on work by Eric Meyer:
+   * http://meyerweb.com/eric/tools/css/reset/
+   v1.0 | 20080212
+   
+-------------------------------------------------------------- */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+body { 
+	line-height: 1.5;
+	margin: 0;
+}
+ol, ul {
+    list-style: none;
+}
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+/* Turn off default focus */
+:focus {
+    outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+    text-decoration: none;
+}
+del {
+    text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+input, textarea {
+	background-image: none;
+	border-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+hr {
+	border-right-style: none;
+	border-left-style: none;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	margin-top: 6px;
+	margin-bottom: 8px;
+}
+
+em {
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* @end */
+
+/* @group Coming Soon */
+
+body {
+	background-image: url(../images/grain.png);
+	font: bold 19px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-shadow: #000 0 -1px 1px;
+}
+
+#text {
+	display: block;
+	text-align: center;
+	margin-top: 120px;
+	color: #fff;
+}
+
+#text span {
+	font-size: 40px;
+	padding-left: 10px;
+	color: #ff9b2e;
+}
+
+#def {
+	position: absolute;
+	bottom: -3px;
+	left: 12px;
+	color: #ff9b2e;
+	text-shadow: #000 0 -1px 1px;
+	font-size: 15px;
+	font-variant: small-caps;
+}
+
+#def span {
+	font-size: 38px;
+	display: block;
+	float: left;
+	line-height: 33px;
+	margin-right: 10px;
+	color: #ff9b2e;
+}
+
+
+
+/* @end */

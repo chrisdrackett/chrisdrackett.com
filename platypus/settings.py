@@ -1,7 +1,15 @@
+# Django settings for platypus project.
 import os
+import sys
+import logging
+import logging.handlers
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+PROJECT_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+
+# Add "support" directory to Python path
+sys.path.insert(0, os.path.join(PROJECT_PATH, 'support'))
+
+LOCALHOST = DEBUG = False
 
 DATABASE_ENGINE = 'mysql'
 DATABASE_NAME = 'platypus'
@@ -16,6 +24,13 @@ SITE_ID = 1
 USE_I18N = False
 ADMIN_MEDIA_PREFIX = '/media/'
 
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
+
+# Add paths here so that Django will monitor them for changes
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_PATH, 'platypus', 'templates'),
+)
+
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
@@ -28,8 +43,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'platypus.urls'
-
-ROOT_PATH = os.path.dirname(__file__)
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',
@@ -50,11 +63,13 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.webdesign',
-    'tagging',
+
     'platypus.apps.events',
     'platypus.apps.links',
     'platypus.apps.music',
-    'platypus.apps.runs'
+    'platypus.apps.runs',
+
+    'tagging',
 )
 
 EMPTY_ITEM = '---'
@@ -71,7 +86,7 @@ LASTFM_SESSION = ''
 NIKE_PLUS_ID = 'runner_id'
 
 try:
-    from local_settings import *
+    from settings_local import *
 except ImportError:
     pass
 

@@ -1,0 +1,14 @@
+LOCALHOST = DEBUG = True
+
+ADMINS = (
+    ('Name', 'email@domain.com'),
+)
+
+MANAGERS = ADMINS
+
+DATABASE_ENGINE = 'mysql'
+DATABASE_NAME = 'platypus'
+DATABASE_USER = 'root'
+DATABASE_PASSWORD = ''
+DATABASE_HOST = ''
+DATABASE_PORT = ''

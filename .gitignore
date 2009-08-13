@@ -2,8 +2,8 @@ bookends/local-files
 local-files
 .coverage
 Makefile.def
-*pyc
-local_settings.py
+*.py?
+settings_local.py
 
 # Emacs backups
 *~

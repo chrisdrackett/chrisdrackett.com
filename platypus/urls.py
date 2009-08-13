@@ -1,9 +1,10 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
+from django.conf import settings
 
 admin.autodiscover()
 
-urlpatterns = patterns('platypus.app.views',
+urlpatterns = patterns('platypus.views',
     # Log-in / out
     url(r'^login/$', 'login', name='login'),
     url(r'^logout/$', 'logout', name='logout'),
@@ -17,17 +18,9 @@ urlpatterns = patterns('platypus.app.views',
 
 # Assumes that MEDIA_URL = '/static/' or some similar prefix in local_settings
 
-from django.conf import settings
-
-if settings.SERVE_MEDIA:
-    if settings.DEBUG:
-        if not hasattr(settings, 'ROOT_PATH'):
-            import os.path
-            settings.ROOT_PATH = os.path.dirname(__file__)
-
-        urlpatterns += patterns('',
-                                (r'^static/images/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.ROOT_PATH + '/../support/images'}),
-                                (r'^static/swf/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.ROOT_PATH + '/../support/swf'}),
-                                (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.ROOT_PATH + '/../support/'}),
-
-                                )
+# This will allow the local media resources to be served from the Django dev
+# server without running a second web server
+if settings.DEBUG and settings.SERVE_MEDIA:
+    urlpatterns += patterns('',
+        (r'^static/(.*)', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    )
