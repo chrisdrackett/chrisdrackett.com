@@ -22,8 +22,9 @@ TIME_ZONE = 'UTC' # as most of our data is coming from feeds that use UTC, platy
 LANGUAGE_CODE = 'en-us'
 SITE_ID = 1
 USE_I18N = False
-ADMIN_MEDIA_PREFIX = '/media/'
 
+# Admin Media
+ADMIN_MEDIA_PREFIX = '/media/'
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
 # Add paths here so that Django will monitor them for changes
