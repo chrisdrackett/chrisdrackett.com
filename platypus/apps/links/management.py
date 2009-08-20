@@ -1,10 +1,7 @@
 import urllib2
+import elementtree.ElementTree as ET
 from datetime import datetime
 from time import strptime
-try:
-    from xml.etree import cElementTree as ET
-except ImportError:
-    import cElementTree as ET
 
 from django.conf import settings
 from django.utils import simplejson
