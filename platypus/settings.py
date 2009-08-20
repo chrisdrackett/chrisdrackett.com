@@ -65,10 +65,10 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.webdesign',
 
-    'platypus.apps.events',
-    'platypus.apps.links',
-    'platypus.apps.music',
-    'platypus.apps.runs',
+    # 'platypus.apps.events',
+    # 'platypus.apps.links',
+    # 'platypus.apps.music',
+    # 'platypus.apps.runs',
     'platypus.apps.xbox',
 
     'tagging',
