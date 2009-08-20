@@ -11,6 +11,10 @@ def template(req, *args, **kwargs):
     kwargs['context_instance'] = RequestContext(req)
     return render_to_response(*args, **kwargs)
 
+def temp_sync(request):
+    from platypus.apps.xbox.models import sync_xbox
+    sync_xbox()
+
 def login(request):
     redirect_to = request.GET.get('next', '/')
     

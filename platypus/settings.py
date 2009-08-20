@@ -69,6 +69,7 @@ INSTALLED_APPS = (
     'platypus.apps.links',
     'platypus.apps.music',
     'platypus.apps.runs',
+    'platypus.apps.xbox',
 
     'tagging',
 )

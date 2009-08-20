@@ -11,6 +11,8 @@ urlpatterns = patterns('platypus.views',
     
     (r'^admin/', include(admin.site.urls)),
     
+    url(r'^temp_sync/$', 'temp_sync', name='temp_sync'),
+    
     # Homepage
     url(r'^$', 'home', name='home'),
 )
