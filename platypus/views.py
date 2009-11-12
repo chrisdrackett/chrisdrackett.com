@@ -18,6 +18,7 @@ def template(req, *args, **kwargs):
 def temp_sync(request):
     from platypus.apps.xbox.models import sync_xbox
     sync_xbox()
+    return HttpResponse('ok.')
 
 def login(request):
     redirect_to = request.GET.get('next', '/')
