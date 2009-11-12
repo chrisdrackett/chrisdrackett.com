@@ -1,3 +1,5 @@
+import socket
+
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
@@ -6,6 +8,8 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
+
+socket.setdefaulttimeout(7)
 
 def template(req, *args, **kwargs):
     kwargs['context_instance'] = RequestContext(req)
